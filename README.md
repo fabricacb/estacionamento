@@ -3,7 +3,7 @@ Repositorio P - Estacionamento #1
 
 Este é o repositorio do projeto P - Estacionamento #1, onde iremos criar uma aplicação que terá o controle de um estacionamento.
 
-Linguagens a utilizar :
+Linguagens e frameworks a utilizar :
 Java,
 Spring boot,
 Jpa,
