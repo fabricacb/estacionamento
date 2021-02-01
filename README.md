@@ -12,8 +12,14 @@ React
 Banco de dados a utilizar :
 Mysql
 
+Controle de versionamento BD :
+FlyWayDB
+
 Controle de versionamento : 
 Git
+
+Testes:
+Postman
 
 Aplicativo Scrum :
 Jira
