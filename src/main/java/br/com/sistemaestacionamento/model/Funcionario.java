@@ -7,7 +7,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "opoyk3y53ix9wwkm.funcionario")
+@Table(name = "funcionario")
 public class Funcionario {
 	
 	@Id //marca o atributo como id
