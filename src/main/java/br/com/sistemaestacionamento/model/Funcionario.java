@@ -1,5 +1,6 @@
 package br.com.sistemaestacionamento.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -11,12 +12,19 @@ import javax.persistence.Table;
 public class Funcionario {
 	
 	@Id //marca o atributo como id
+	@Column(name = "id_funcionario")
 	@GeneratedValue(strategy = GenerationType.IDENTITY) //marca o atributo como auto increment
 	private int id;
+	
+	@Column(name = "nome")
 	private String nome;
+	
+	@Column(name = "email")
 	private String email;
+	
+	@Column(name = "senha")
 	private String senha;
-
+	
 	public Funcionario() {
 
 	}
