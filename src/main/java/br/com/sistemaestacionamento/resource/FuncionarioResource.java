@@ -27,11 +27,8 @@ public class FuncionarioResource {
 		return funcionarioService.criar(funcionario, response);
 	}
 	
-	@Autowired
-	private FuncionarioRepository funcionarioRepository;
-	
 	@GetMapping
-	public List<Funcionario> listar(){
-		return funcionarioRepository.findAll();
+	public ResponseEntity<List<Funcionario>> index(){
+		return ResponseEntity.ok(funcionarioService.listar());
 	}
 }

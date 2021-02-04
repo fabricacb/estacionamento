@@ -1,6 +1,7 @@
 package br.com.sistemaestacionamento.service;
 
 import java.net.URI;
+import java.util.List;
 
 import javax.annotation.ManagedBean;
 import javax.servlet.http.HttpServletResponse;
@@ -27,5 +28,15 @@ public class FuncionarioService {
 		response.setHeader("location", uri.toASCIIString());
 		
 		return ResponseEntity.created(uri).body(funcionarioSalvo);
+	}
+	
+	@Autowired
+	public FuncionarioService(FuncionarioRepository funcionarioRepository) {
+		this.funcionarioRepository = funcionarioRepository;
+	}
+	
+	
+	public List<Funcionario> listar(){
+		return funcionarioRepository.findAll();
 	}
 }
