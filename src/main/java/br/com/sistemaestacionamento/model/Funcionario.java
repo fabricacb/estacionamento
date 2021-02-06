@@ -14,7 +14,7 @@ public class Funcionario {
 	@Id //marca o atributo como id
 	@Column(name = "id_funcionario")
 	@GeneratedValue(strategy = GenerationType.IDENTITY) //marca o atributo como auto increment
-	private int id;
+	private Long id;
 	
 	@Column(name = "nome")
 	private String nome;
@@ -29,7 +29,7 @@ public class Funcionario {
 
 	}
 
-	public Funcionario(int id, String nome, String email, String senha) {
+	public Funcionario(Long id, String nome, String email, String senha) {
 		super();
 		this.id = id;
 		this.nome = nome;
@@ -37,11 +37,12 @@ public class Funcionario {
 		this.senha = senha;
 	}
 
-	public int getId() {
+	
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
