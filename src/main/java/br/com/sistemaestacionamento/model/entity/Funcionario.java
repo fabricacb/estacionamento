@@ -23,7 +23,7 @@ public class Funcionario {
 	private String email;
 	
 	@Column(name = "senha")
-	private String senha
+	private String senha;
 	
 	public Funcionario() {
 
