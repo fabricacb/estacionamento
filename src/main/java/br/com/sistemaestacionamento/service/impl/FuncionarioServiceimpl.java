@@ -1,8 +1,13 @@
 package br.com.sistemaestacionamento.service.impl;
 
+import java.util.Optional;
+
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import br.com.sistemaestacionamento.exception.ErroAutenticacao;
 import br.com.sistemaestacionamento.exception.RegraNegocioException;
 import br.com.sistemaestacionamento.model.entity.Funcionario;
 import br.com.sistemaestacionamento.model.repository.FuncionarioRepository;
@@ -20,8 +25,24 @@ public class FuncionarioServiceimpl implements FuncionarioService{
 	}
 
 	@Override
-	public Funcionario salvarFuncionario(String email, String senha) {
-		// TODO Auto-generated method stub
+	@Transactional
+	public Funcionario salvarFuncionario(Funcionario func) {
+		validarEmail(func.getEmail());
+		return repository.save(func);
+	}
+	
+	@Override
+	public Funcionario autenticar(String email, String senha) {
+		Optional<Funcionario> funcionario = repository.findByEmail(email);
+		
+		if(!funcionario.isPresent()) {
+			throw new ErroAutenticacao("Usuario não encontrado para o e-mail informado!");
+		}
+		
+		if(!funcionario.get().getSenha().equals(senha)) {
+			throw new ErroAutenticacao("Senha inválida!");
+		}
+		
 		return null;
 	}
 
