@@ -7,8 +7,13 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
+
+import lombok.Builder;
+
 @Entity
 @Table(name = "funcionario", schema = "estacionamento")
+@Builder
 public class Funcionario {
 	
 	@Id //marca o atributo como id
@@ -111,6 +116,11 @@ public class Funcionario {
 		} else if (!senha.equals(other.senha))
 			return false;
 		return true;
+	}
+
+	public static Object builder() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 	
