@@ -14,7 +14,7 @@ public class Funcionario {
 	@Id //marca o atributo como id
 	@Column(name = "id_funcionario")
 	@GeneratedValue(strategy = GenerationType.IDENTITY) //marca o atributo como auto increment
-	private Long id;
+	private Long id
 	
 	@Column(name = "nome")
 	private String nome;
