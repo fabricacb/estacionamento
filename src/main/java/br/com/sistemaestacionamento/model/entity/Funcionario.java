@@ -42,7 +42,7 @@ public class Funcionario {
 		this.senha = senha;
 	}
 
-	
+
 	public Long getId() {
 		return id;
 	}
@@ -117,12 +117,6 @@ public class Funcionario {
 			return false;
 		return true;
 	}
-
-	public static Object builder() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	
 	
 
 }

@@ -1,13 +1,15 @@
 package br.com.sistemaestacionamento.api.dto;
 
+import lombok.Builder;
+
+@Builder
 public class FuncionarioDTO {
 	
 	private String nome;
-	
 	private String email;
-	
 	private String senha;
 
+	
 	public String getNome() {
 		return nome;
 	}
