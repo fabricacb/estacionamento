@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.sistemaestacionamento.api.dto.FuncionarioDTO;
+import br.com.sistemaestacionamento.exception.ErroAutenticacao;
 import br.com.sistemaestacionamento.exception.RegraNegocioException;
 import br.com.sistemaestacionamento.model.entity.Funcionario;
 import br.com.sistemaestacionamento.model.entity.Funcionario.FuncionarioBuilder;
@@ -24,6 +25,16 @@ public class FuncionarioController {
 		this.service = service;
 	}
 
+	@PostMapping("/autenticar")
+	public ResponseEntity autenticar(@RequestBody FuncionarioDTO dto) {
+		try {
+			Funcionario funcionarioAutenticado =  service.autenticar(dto.getEmail(), dto.getSenha());
+			return ResponseEntity.ok(funcionarioAutenticado);
+		} catch (ErroAutenticacao e) {
+			return ResponseEntity.badRequest().body(e.getMessage());
+		}
+	}
+	
 	@PostMapping
 	public ResponseEntity salvarFuncionario(@RequestBody FuncionarioDTO dto) {
 		
