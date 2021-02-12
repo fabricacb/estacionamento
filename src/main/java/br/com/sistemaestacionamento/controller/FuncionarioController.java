@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -75,4 +76,12 @@ public class FuncionarioController {
 		}).orElseGet(() -> new ResponseEntity("Funcionario não encontrado na base de dados",HttpStatus.BAD_REQUEST));
 	}
 	
+	@DeleteMapping("{id}")
+	public ResponseEntity deletarFuncionario(@PathVariable("id") Long id) {
+		return service.obterPorID(id).map( entidade -> {
+			service.deletarFuncionario(entidade);
+			return new ResponseEntity(HttpStatus.NO_CONTENT);
+		}).orElseGet( () -> 
+			new ResponseEntity("Funcionario deletado com sucesso",HttpStatus.BAD_REQUEST));
+	}
 }
