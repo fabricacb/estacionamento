@@ -32,6 +32,18 @@ public class FuncionarioServiceimpl implements FuncionarioService{
 	}
 	
 	@Override
+	@Transactional
+	public void deletarFuncionario(Funcionario func) {
+		repository.delete(func);
+	}
+	
+	@Override
+	@Transactional
+	public Funcionario atualizarFuncionario(Funcionario func) {
+		return repository.save(func);
+	}
+	
+	@Override
 	public Funcionario autenticar(String email, String senha) {
 		Optional<Funcionario> funcionario = repository.findByEmail(email);
 		
@@ -52,6 +64,11 @@ public class FuncionarioServiceimpl implements FuncionarioService{
 		if(existe) {
 			throw new RegraNegocioException("Já foi cadastrado um usuário utilizando este email");
 		}
+	}
+	
+	@Override
+	public Optional<Funcionario> obterPorID(Long id){
+		return repository.findById(id);
 	}
 
 }
