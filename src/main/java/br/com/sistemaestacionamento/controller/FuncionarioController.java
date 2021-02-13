@@ -89,17 +89,23 @@ public class FuncionarioController {
 			service.deletarFuncionario(entidade);
 			return new ResponseEntity(HttpStatus.NO_CONTENT);
 		}).orElseGet( () -> 
-			new ResponseEntity("Funcionario deletado com sucesso",HttpStatus.BAD_REQUEST));
+			new ResponseEntity("Funcionario Não foi encontrado",HttpStatus.BAD_REQUEST));
 	}
 	
 	@GetMapping
 	public ResponseEntity<List<Funcionario>> buscarFuncionario(){
+		if(service.buscarFuncionario().isEmpty()) {
+			return new ResponseEntity("Funcionarios não foi encontrados",HttpStatus.BAD_REQUEST);
+		}
 		return ResponseEntity.ok(service.buscarFuncionario());
 	}
 	
 	@GetMapping(value = "/{id}")
 	public ResponseEntity<Optional<Funcionario>> obterPorID(@PathVariable("id") Long id){
 		Optional<Funcionario> funcionario = service.obterPorID(id);
+		if (funcionario.isEmpty()) {
+			return new ResponseEntity("Funcionario alefes não Sfoi eNScontrado",HttpStatus.BAD_REQUEST);
+		}
 		return ResponseEntity.ok().body(funcionario);
 	}
 	
