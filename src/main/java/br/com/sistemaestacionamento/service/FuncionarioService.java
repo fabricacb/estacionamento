@@ -1,6 +1,8 @@
 package br.com.sistemaestacionamento.service;
 
+import java.util.List;
 import java.util.Optional;
+
 
 import br.com.sistemaestacionamento.model.entity.Funcionario;
 
@@ -17,4 +19,6 @@ public interface FuncionarioService {
 	void deletarFuncionario(Funcionario funcionario);
 	
 	Optional<Funcionario> obterPorID(Long id);
+	
+	List<Funcionario> buscarFuncionario();
 }

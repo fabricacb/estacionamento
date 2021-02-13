@@ -1,5 +1,8 @@
 package br.com.sistemaestacionamento.controller;
 
+import java.util.List;
+import java.util.Optional;
+
 import javax.persistence.Entity;
 
 import org.springframework.http.HttpStatus;
@@ -13,15 +16,17 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+
 import br.com.sistemaestacionamento.api.dto.FuncionarioDTO;
 import br.com.sistemaestacionamento.exception.ErroAutenticacao;
 import br.com.sistemaestacionamento.exception.RegraNegocioException;
 import br.com.sistemaestacionamento.model.entity.Funcionario;
 import br.com.sistemaestacionamento.model.entity.Funcionario.FuncionarioBuilder;
 import br.com.sistemaestacionamento.service.FuncionarioService;
+import ch.qos.logback.core.pattern.Converter;
 
 @RestController
-@RequestMapping("/api/funcionarios")
+@RequestMapping("/funcionarios")
 public class FuncionarioController {
 	
 	private FuncionarioService service;
@@ -58,6 +63,7 @@ public class FuncionarioController {
 				
 	}
 	
+
 	@PutMapping("{id}")
 	public ResponseEntity salvarFuncionario(@PathVariable("id") Long id, @RequestBody FuncionarioDTO dto) {
 		return service.obterPorID(id).map(entity -> {
@@ -76,6 +82,7 @@ public class FuncionarioController {
 		}).orElseGet(() -> new ResponseEntity("Funcionario não encontrado na base de dados",HttpStatus.BAD_REQUEST));
 	}
 	
+	
 	@DeleteMapping("{id}")
 	public ResponseEntity deletarFuncionario(@PathVariable("id") Long id) {
 		return service.obterPorID(id).map( entidade -> {
@@ -84,4 +91,16 @@ public class FuncionarioController {
 		}).orElseGet( () -> 
 			new ResponseEntity("Funcionario deletado com sucesso",HttpStatus.BAD_REQUEST));
 	}
+	
+	@GetMapping
+	public ResponseEntity<List<Funcionario>> buscarFuncionario(){
+		return ResponseEntity.ok(service.buscarFuncionario());
+	}
+	
+	@GetMapping(value = "/{id}")
+	public ResponseEntity<Optional<Funcionario>> obterPorID(@PathVariable("id") Long id){
+		Optional<Funcionario> funcionario = service.obterPorID(id);
+		return ResponseEntity.ok().body(funcionario);
+	}
+	
 }

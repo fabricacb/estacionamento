@@ -1,11 +1,14 @@
 package br.com.sistemaestacionamento.service.impl;
 
+import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import br.com.sistemaestacionamento.exception.ErroAutenticacao;
 import br.com.sistemaestacionamento.exception.RegraNegocioException;
@@ -40,6 +43,7 @@ public class FuncionarioServiceimpl implements FuncionarioService{
 	@Override
 	@Transactional
 	public Funcionario atualizarFuncionario(Funcionario func) {
+		Objects.requireNonNull(func.getId());
 		return repository.save(func);
 	}
 	
@@ -70,5 +74,11 @@ public class FuncionarioServiceimpl implements FuncionarioService{
 	public Optional<Funcionario> obterPorID(Long id){
 		return repository.findById(id);
 	}
+	
+	@Override
+	public List<Funcionario> buscarFuncionario(){
+		return repository.findAll();
+	}
+
 
 }
