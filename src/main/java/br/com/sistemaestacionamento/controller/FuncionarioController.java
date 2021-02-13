@@ -106,7 +106,7 @@ public class FuncionarioController {
 		if (funcionario.isEmpty()) {
 			return new ResponseEntity("Funcionario não foi encontrado",HttpStatus.BAD_REQUEST);
 		}
-		return ResponseEntity.ok().body(funcionario)
+		return ResponseEntity.ok().body(funcionario);
 	}
 	
 }
