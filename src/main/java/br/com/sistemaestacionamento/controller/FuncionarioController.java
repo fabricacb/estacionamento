@@ -104,9 +104,9 @@ public class FuncionarioController {
 	public ResponseEntity<Optional<Funcionario>> obterPorID(@PathVariable("id") Long id){
 		Optional<Funcionario> funcionario = service.obterPorID(id);
 		if (funcionario.isEmpty()) {
-			return new ResponseEntity("Funcionario alefe não foi encontrado",HttpStatus.BAD_REQUEST);
+			return new ResponseEntity("Funcionario aslefe não foi encontrado",HttpStatus.BAD_REQUEST);
 		}
-		return ResponseEntity.ok().body(funcionario)
+		return ResponseEntity.ok().body(funcionario);
 	}
 	
 }
