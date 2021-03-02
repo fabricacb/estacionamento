@@ -1,7 +1,11 @@
 package br.com.sistemaestacionamento.api.dto;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.NoArgsConstructor;
 
+@NoArgsConstructor
+@AllArgsConstructor
 @Builder
 public class FuncionarioDTO {
 	
